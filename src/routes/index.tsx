@@ -1,0 +1,311 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Linkedin } from "lucide-react";
+import {
+  CardBlock,
+  DocsLink,
+  GithubLink,
+  ProjectCard,
+  TableauLink,
+} from "@/components/portfolio/ProjectCard";
+import { ProjectImageGrid } from "@/components/portfolio/ImagePlaceholder";
+import payraSplitJiraBoard from "@/assets/projects/payrasplit-jira-board.png";
+import payraSplitNotionCover from "@/assets/projects/payrasplit-notion-cover.png";
+import payraSplitNotionTimelineBacklog from "@/assets/projects/payrasplit-notion-timeline-backlog.png";
+import payraSplitTableau from "@/assets/projects/payrasplit-tableau-dashboard.png";
+import n8nFlow from "@/assets/projects/n8n-flow-diagram.png";
+import n8nConfirmationMsg from "@/assets/projects/n8n-confirmation-message.png";
+import sheetsResult from "@/assets/projects/n8n-sheets.png";
+import churnDashboard from "@/assets/projects/churn-capital-loss-dashboard-v2.png";
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Portafolio" },
+      {
+        name: "description",
+        content:
+          "Portafolio de María José Jiménez, estudiante de Ingeniería Industrial con proyectos de business intelligence, análisis de datos y producto digital.",
+      },
+      { property: "og:title", content: "Portafolio" },
+      {
+        property: "og:description",
+        content:
+          "Proyectos de business intelligence, analítica y producto digital.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Index,
+});
+
+const SKILLS = [
+  "Python",
+  "SQL",
+  "Power BI",
+  "Tableau",
+  "Excel",
+  "R",
+  "IA Generativa",
+  "Metodologías Ágiles (Scrum, Kanban)",
+  "Gestión de Producto",
+  "Business Intelligence",
+  "Visualización de Datos",
+  "Análisis de Negocio",
+  "Análisis de Datos",
+];
+
+function Index() {
+  return (
+    <div className="min-h-screen bg-background">
+      <header className="relative overflow-hidden border-b border-border">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/25 blur-3xl"
+        />
+        <div className="relative mx-auto max-w-5xl px-6 py-14 sm:py-16">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Portafolio
+          </p>
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl">
+            María José Jiménez
+          </h1>
+          <p className="mt-3 text-base font-medium text-muted-foreground sm:text-lg">
+            Estudiante de Ingeniería Industrial
+          </p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <a
+              href="https://www.linkedin.com/in/mariajosejimenez-ingenieraindustrial/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+            >
+              <Linkedin className="h-4 w-4" aria-hidden="true" />
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
+        <section aria-labelledby="projects">
+          <h2
+            id="projects"
+            className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl"
+          >
+            Proyectos
+            <span className="mt-2 block h-1 w-14 rounded-full bg-primary" aria-hidden="true" />
+          </h2>
+          <div className="mt-8 grid gap-6">
+            <ProjectCard
+              title="Análisis — Fuga de Clientes y Pérdida de Capital"
+              tech={["Power BI", "DAX", "Visualización de Datos"]}
+              actions={
+                <GithubLink href="https://github.com/mariajimenezchiquinquira-bot/PowerBi-Customer-Churn-Capital-Loss-Analysis" />
+              }
+            >
+              <CardBlock label="Problema">
+                Un banco enfrentaba una alta fuga de clientes sin identificar sus principales
+                causas ni el impacto financiero asociado.
+              </CardBlock>
+              <CardBlock label="Enfoque">
+                Se realizó un análisis exploratorio en Power BI para identificar patrones de
+                fuga, comparar segmentos y detectar los clientes con mayor riesgo de abandono.
+              </CardBlock>
+              <CardBlock label="Resultados">
+                Se encontró que la pérdida de capital estaba concentrada en clientes con altos
+                saldos, generando un impacto financiero significativo. La inactividad surgió
+                como la principal señal de alerta, especialmente en Alemania, donde se registró
+                la mayor tasa de fuga.
+              </CardBlock>
+              <img
+                src={churnDashboard}
+                alt="Dashboard de Power BI: Análisis de Fuga de Clientes y Pérdida de Capital"
+                loading="lazy"
+                className="mx-auto w-full max-w-3xl rounded-md bg-white object-contain"
+              />
+            </ProjectCard>
+
+            <ProjectCard
+              title="Payra Split — Función de Pagos Compartidos"
+              tech={["Notion", "Jira", "Tableau", "Scrum"]}
+              actions={
+                <TableauLink href="https://public.tableau.com/app/profile/maria.jimenez7845/viz/PayraSplit_DashboardTableauES/Dashboard1" />
+              }
+            >
+              <CardBlock label="Problema">
+                Dividir gastos compartidos puede ser un dolor de cabeza. Cuando una persona paga por
+                todos, las cuentas se complican, o cuando Laura pagó la comida y Felipe las cervezas,
+                hay que cruzar cuentas, saber quién le debe a quién, y al final es todo un rollo.
+              </CardBlock>
+              <CardBlock label="Solución">
+                "Payra Split", una función que permite a los usuarios de Payra, dividir gastos al
+                instante y ver quién ya pagó. A continuación se muestra un overview del proceso de
+                planificación, ejecución y seguimiento del producto. Se utilizó Notion para
+                planificar el producto, Jira para gestionar la ejecución de cada fase mediante
+                sprints y tareas, y Tableau para analizar las tasas de adopción y uso después del
+                lanzamiento.
+              </CardBlock>
+              <CardBlock label="Resultado">
+                Una experiencia más simple para dividir gastos, hacer seguimiento a los pagos y
+                saber quién debe a quién, con métricas de adopción y uso para evaluar el desempeño
+                de la función.
+              </CardBlock>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
+                    Notion — Planificación de Producto
+                  </p>
+                  <ProjectImageGrid
+                    images={[
+                      { src: payraSplitNotionCover, alt: "Resumen del roadmap de Payra Split en Notion" },
+                      { src: payraSplitNotionTimelineBacklog, alt: "Cronograma y backlog de Payra Split en Notion" },
+                    ]}
+                  />
+                </div>
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
+                    Jira — Ejecución de Sprints
+                  </p>
+                  <div className="mx-auto w-full max-w-2xl">
+                    <ProjectImageGrid
+                      images={[
+                        { src: payraSplitJiraBoard, alt: "Tablero Scrum de Payra Split en Jira" },
+                      ]}
+                      columns={1}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
+                    Tableau — Dashboard de Adopción
+                  </p>
+                  <ProjectImageGrid
+                    images={[
+                      { src: payraSplitTableau, alt: "Dashboard de uso y adopción de Payra Split en Tableau" },
+                    ]}
+                    columns={1}
+                  />
+                </div>
+              </div>
+            </ProjectCard>
+
+            <ProjectCard
+              title="Automatización — Contratos Vehiculares"
+              tech={["n8n", "Gemini (IA)", "Process Automation"]}
+              actions={
+                <DocsLink href="/docs/vehicle-contract-automation-technical-documentation.pdf" />
+              }
+            >
+              <CardBlock label="Problema">
+                El equipo de facturación de un concesionario transcribía manualmente 8 campos de
+                información desde contratos en PDF a una hoja de cálculo. Era un proceso
+                repetitivo, lento y propenso a errores humanos.
+              </CardBlock>
+              <CardBlock label="Solución">
+                Un flujo en n8n que automatiza el proceso de principio a fin, toma los
+                contratos desde Google Drive, extrae su contenido y utiliza Gemini AI para
+                identificar los 8 campos requeridos. Luego, registra automáticamente la
+                información en Google Sheets y, al terminar de procesar todos los contratos,
+                envía un correo de confirmación por Gmail.
+              </CardBlock>
+              <CardBlock label="Resultado">
+                Se eliminó la carga manual de datos y se agilizó el procesamiento de contratos
+                por lotes, reduciendo errores y haciendo más confiable el proceso de
+                facturación.
+              </CardBlock>
+              <div className="flex flex-col gap-3">
+                <a
+                  href={n8nFlow}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block overflow-hidden rounded-md"
+                >
+                  <img
+                    src={n8nFlow}
+                    alt="Flujo de n8n para automatizar el procesamiento de contratos vehiculares"
+                    loading="lazy"
+                    className="aspect-video w-full bg-white object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                </a>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <a
+                    href={sheetsResult}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group block overflow-hidden rounded-md"
+                  >
+                    <img
+                      src={sheetsResult}
+                      alt="Datos vehiculares extraídos y registrados en Google Sheets"
+                      loading="lazy"
+                      className="aspect-video w-full bg-white object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                  </a>
+                  <a
+                    href={n8nConfirmationMsg}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group block overflow-hidden rounded-md"
+                  >
+                    <img
+                      src={n8nConfirmationMsg}
+                      alt="Mensaje de confirmación por Gmail tras el procesamiento exitoso"
+                      loading="lazy"
+                      className="aspect-video w-full bg-white object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                  </a>
+                </div>
+              </div>
+            </ProjectCard>
+          </div>
+        </section>
+
+        <section aria-labelledby="skills" className="relative mt-16 sm:mt-24">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-28 -top-24 h-80 w-80 rounded-full bg-primary/30 blur-[90px]"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-primary/25 blur-[100px]"
+          />
+          <h2
+            id="skills"
+            className="relative text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl"
+          >
+            Skills & Tools
+            <span className="mt-2 block h-1 w-14 rounded-full bg-primary" aria-hidden="true" />
+          </h2>
+          <ul className="relative mt-8 flex flex-wrap gap-2">
+            {SKILLS.map((skill) => (
+              <li
+                key={skill}
+                className="rounded-full border border-border bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground transition-colors hover:border-primary/60 hover:text-primary"
+              >
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
+
+      <footer className="border-t border-border bg-secondary/50">
+        <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-muted-foreground">© María José Jiménez</p>
+          <div className="flex gap-5">
+            <a
+              href="https://www.linkedin.com/in/mariajosejimenez-ingenieraindustrial/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
